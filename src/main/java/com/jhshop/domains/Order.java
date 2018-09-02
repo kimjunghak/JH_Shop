@@ -34,12 +34,10 @@ public class Order {
 	@Column(name="orderid", nullable=false)
 	private Long orderId;
 	
-	@ManyToOne
 	@JoinColumn(name="user_order", referencedColumnName="userid")
-	private User user;
+	private String userId;
 	
-	@ManyToOne
 	@JoinColumn(name="product_order", referencedColumnName="productname")
-	private Product product;
+	private String productName;
 	
 }

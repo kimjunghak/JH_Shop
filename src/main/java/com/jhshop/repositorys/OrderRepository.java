@@ -12,5 +12,5 @@ import com.jhshop.domains.User;
  */
 public interface OrderRepository extends JpaRepository<Order, Long>{
 	Order findByOrderId(Long orderId);
-	List<Order> findByUser(User user);
+	List<Order> findByUserId(String userId);
 }

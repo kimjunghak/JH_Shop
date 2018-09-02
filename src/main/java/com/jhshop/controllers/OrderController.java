@@ -47,7 +47,7 @@ public class OrderController {
 		Product orderProduct = productRepository.findByProductId(productId);
 		User user = userRepository.findByUserId(userId);
 		
-		Order saveOrder = new Order(null, user, orderProduct);
+		Order saveOrder = new Order(null, user.getUserId(), orderProduct.getProductName());
 		
 		orderRepository.save(saveOrder);
 		
@@ -55,16 +55,12 @@ public class OrderController {
 	}
 	
 	// /orderlist 요청을 GET 방식으로 받아 Order 목록을 보여주는 역할
-	// product 객체 직렬화에 실패하여 DB를 확인하여 저장되는지 확인...
-	@SuppressWarnings("null")
 	@GetMapping("/orderlist")
 	@ResponseBody
-	public int orderList(String loginUserId) {
+	public List<Order> orderList(String loginUserId) {
 //		User loginUser = (User) session.getAttribute("login");
-		User loginUser = userRepository.findByUserId(loginUserId);
-		List<Order> orderList = orderRepository.findByUser(loginUser);
-			
+		List<Order> orderList = orderRepository.findByUserId(loginUserId);
 		
-		return orderList.size();
+		return orderList;
 	}
 }
