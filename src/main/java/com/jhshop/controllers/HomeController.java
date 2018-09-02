@@ -1,12 +1,9 @@
 package com.jhshop.controllers;
 
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import com.jhshop.domains.User;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author JH
@@ -17,15 +14,10 @@ import com.jhshop.domains.User;
 public class HomeController {
 	
 	
-	// / 와 /logged 요청을 받으면 각각 index.html, /user/logged.html로 매핑해주는 역할
-	@GetMapping("/")
+	// Home 페이지 index.html 매핑
+	@RequestMapping("/")
 	public String home() {
 		return "index";
 	}
 	
-	@GetMapping("/logged")
-	public String loginUser(HttpSession session){
-		User user = (User) session.getAttribute("login");
-		return "/user/logged";
-	}
 }

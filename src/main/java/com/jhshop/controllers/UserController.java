@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jhshop.domains.User;
 import com.jhshop.repositorys.UserRepository;
@@ -60,6 +61,15 @@ public class UserController {
 		}
 		
 		return "/user/signin";
+	}
+	
+	//login 한 유저 정보 노출페이지
+	@GetMapping("/logged")
+	@ResponseBody
+	public String loginUser(String userId){
+//		User user = (User) session.getAttribute("login");
+		User loginUser = userRepository.findByUserId(userId);
+		return loginUser.toString();
 	}
 	
 	// signout 을 요청받아 home 페이지로 이동
