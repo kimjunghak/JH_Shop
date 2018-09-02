@@ -22,6 +22,11 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @ToString
 @Table(name="ordertable")	//DB 정렬문과 겹침
+
+/**
+ * @author JH
+ * DB에 저장할 Order table의 data들을 생성하기 위한 클래스
+ */
 public class Order {
 	
 	@Id

@@ -19,6 +19,12 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+
+/**
+ * @author JH
+ * DB에 저장할 User table의 data들을 생성하기 위한 클래스
+ */
+
 public class User {
 	
 	@Id

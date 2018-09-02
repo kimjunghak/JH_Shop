@@ -11,29 +11,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.jhshop.domains.User;
 import com.jhshop.repositorys.UserRepository;
 
+/**
+ * @author JH
+ * /user 페이지 Controller
+ */
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
+	// user DB와 데이터 주고받기 위함
 	@Autowired
 	private UserRepository userRepository;
 	
+	// signup 요청을 GET방식으로 받아 signup form이 존재하는 페이지로 매핑
 	@GetMapping("/signup")
 	public String signupForm() {
 		return "/user/signup";
 	}
 	
+	// signup 요청을 POST 방식으로 signup form에 작성한 값들을 받아와 user DB에 저장
 	@PostMapping("/signup")
 	public String signup(User newUser) {
 		userRepository.save(newUser);
 		return "redirect:/";
 	}
 	
+	// signin 요청을 GET방식으로 받아 signin form이 존재하는 페이지로 매핑
 	@GetMapping("/signin")
 	public String signinForm() {
 		return "/user/signin";
 	}
 	
+	// signin 요청을 POST 방식으로 signin form에 작성한 값들을 받아와 user DB에 등록된 데이터들과 비교하여
+	// 아이디 비밀번호 비교 후 성공하면 로그인 완료 패이지 매핑
+	// 실패하면 signin 페이지 redirect
 	@PostMapping("/signin")
 	public String signin(User user, HttpSession session) {
 		User oldUser = new User();
@@ -50,6 +62,7 @@ public class UserController {
 		return "/user/signin";
 	}
 	
+	// signout 을 요청받아 home 페이지로 이동
 	@GetMapping("/signout")
 	public String signout(HttpSession session) {
 		session.removeAttribute("login");

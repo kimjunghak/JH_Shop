@@ -18,6 +18,11 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+
+/**
+ * @author JH
+ * DB에 저장할 Product table의 data들을 생성하기 위한 클래스
+ */
 public class Product {
 	
 	@Id
